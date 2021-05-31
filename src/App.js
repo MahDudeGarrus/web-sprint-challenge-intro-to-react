@@ -28,16 +28,18 @@ console.log(characterInfo)
 const CharactersContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
-  gap: 2rem;
+  gap: 8rem;
   align-items: flex-start;
+  justify-content: center;
 `
   return (
     <div className="App">
       <h1 className="Header">Star Wars Characters</h1>
+
       <CharactersContainer>
         {characterInfo.map((item) => {
           return <Character key={item.name} character={item}/>
-        })}
+        })} {/* gave uniue key of the name of the characters*/}
       </CharactersContainer>
       
     </div>
