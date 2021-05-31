@@ -1,17 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
+import Character from './components/Character';
+import styled from 'styled-components';
+
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
+  const [characterInfo, setCharacterInfo] = useState([]);
 
   // Fetch characters from the API in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
+  useEffect(() => {
+    axios
+    .get('https://swapi.dev/api/people')
+    .then((res) => {
+      setCharacterInfo(res.data)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [])
+console.log(characterInfo)
 
+const CharactersContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8rem;
+  align-items: flex-start;
+  justify-content: center;
+`
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
+      <h1 className="Header">Star Wars Characters</h1>
+
+      <CharactersContainer>
+        {characterInfo.map((item) => {
+          return <Character key={item.name} character={item}/>
+        })} {/* gave uniue key of the name of the characters*/}
+      </CharactersContainer>
+      
     </div>
   );
 }
