@@ -3,9 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CharacterDiv = styled.div`
-width: 350px
-margin: 0 auto;
-height: 600px;
+background: #BDB76B;
+opacity: 0.7;
+width: 20vw;
+margin: 5px;
+padding: 10px;
+height: auto;
 `
 
 export default function Character(props) {
